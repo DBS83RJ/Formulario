@@ -10,6 +10,9 @@ import { CepServiceService } from 'src/app/cep-service.service';
 })
 export class FormularioComponent implements OnInit {
   formCliente!: FormGroup;
+  regexCPF = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+  regexCNPJ = /[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/;
+  regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(private formBuilder: FormBuilder,
     private cepsService: CepServiceService
@@ -23,11 +26,11 @@ export class FormularioComponent implements OnInit {
   createForm(cliente: Cliente) {
     this.formCliente = this.formBuilder.group({
       tipo: [cliente.tipo],
-      cpf: [cliente.cpf, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)],
-      cnpj: [cliente.cnpj, Validators.pattern(/[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/)], //52.942.884/0001-05
+      cpf: [cliente.cpf, Validators.pattern(this.regexCPF)],
+      cnpj: [cliente.cnpj, Validators.pattern(this.regexCNPJ)],
       nome: [cliente.nome],
       razaoSocial: [cliente.razaoSocial],
-      email: [cliente.email, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)],
+      email: [cliente.email, Validators.pattern(this.regexEmail)],
       cep: [cliente.cep],
       endereco: [cliente.endereco],
       bairro: [cliente.bairro],
