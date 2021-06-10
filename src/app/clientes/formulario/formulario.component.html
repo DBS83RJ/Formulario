@@ -20,7 +20,7 @@
   <div class="form-group" *ngIf="formCliente.value.tipo == 2">
     <label for="cnpj">CNPJ</label>
     <input type="text" class="form-control" name="cnpj" id="cnpj" formControlName="cnpj" mask="00.000.000/0000-00"
-    [showMaskTyped]="true">
+    [showMaskTyped]="true" [dropSpecialCharacters]="false">
     <div *ngIf="formCliente.controls.cnpj.errors?.pattern">
       CNPJ INVÁLIDO!
     </div>
