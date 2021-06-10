@@ -9,6 +9,7 @@ import { CepServiceService } from 'src/app/cep-service.service';
   styleUrls: ['./formulario.component.css']
 })
 
+
 export class FormularioComponent implements OnInit {
   formCliente!: FormGroup;
   regexCPF = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
